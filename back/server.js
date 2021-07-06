@@ -1,7 +1,8 @@
-const express=require('express')
-const cors=require('cors')
-const mongoose=require('mongoose')
-
+const express=require('express');
+const cors=require('cors');
+const mongoose=require('mongoose');
+const path=require('path')
+const dotenv=require('dotenv')
 require('dotenv').config();
 
 
@@ -16,7 +17,7 @@ app.use(express.json());
 
 
 
-const uri = 'mongodb+srv://manu:test123@diet.qkfbq.mongodb.net/first?retryWrites=true&w=majority';
+const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex: true });
 
 
@@ -24,11 +25,11 @@ const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
-const userRouter=require('./routes/user');
-const exerciseRouter=require('./routes/exercise')
 
-app.use('/exercise',exerciseRouter);
-app.use('/users',userRouter);
+const BlogRouter=require('./routes/blog')
+
+app.use('/blog',BlogRouter);
+
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

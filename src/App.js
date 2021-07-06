@@ -1,23 +1,19 @@
 import React from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
+import './app.css'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-
-import Navbar from './components/navbar.component'
-import ExercisesList from './components/exercises-list.component';
-import EditExercise from './components/edit-exercise.component';
-import CreateExercise from './components/create-exercise.component';
-import CreateUser from './components/create-user.component';
-
+import FBlog from './components/fullblog';
+import Blog from './components/allblogs';
+import EBlog from './components/editblog';
 function App() {
   return (
-    <Router>
+    <Router> 
       
-      <Navbar />
-      <br/>
-      <Route path="/"  component={ExercisesList} />
-      <Route path="/edit/:id" component={EditExercise} />
-      <Route path="/create" component={CreateExercise} />
-      <Route path="/user" component={CreateUser} />
+ 
+      
+      <Route exact path="/"  component={Blog} />
+      <Route exact path="/blog" component={FBlog} />
+      <Route exact path="/editblog" component={EBlog} />
+      
       
     </Router>
   );
